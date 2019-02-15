@@ -1,0 +1,25 @@
+<div class="row">
+ <!--      <form class="col s12"> -->
+    <%= form_for [@tweet] do |f| %>
+        <div class="row">
+          <div class="input-field col s6">
+            <!-- <input id="input_text" type="text" data-length="10"> -->
+            <%= f.text_field :tytle ,maxlength: 10  %>
+            <%= f.label :tytle, "タイトル" %>
+           <!--  <label for="input_text">Input text</label> -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <!-- <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
+            <label for="textarea2">Textarea</label> -->
+            <%= f.text_area :text,maxlength: 140 ,class: "materialize-textarea"%>
+            <%= f.label :text,"本文を入力してください" %>
+          </div>
+        </div>
+        <!-- <button class="btn waves-effect waves-light" type="submit" name="action">Submit -->
+          <%= button_tag type: "submit", class: "btn waves-effect waves-light" do %>
+          Send<i class="material-icons right"></i>
+          <% end %>
+    <% end %>
+    </div>
