@@ -33,7 +33,7 @@ class TweetsController < ApplicationController
 
  private
   def create_params
-    params.require(:tweet).permit(:text,:tytle)
+    params.require(:tweet).permit(:text,:title)
   end
 
   def move_to_index
