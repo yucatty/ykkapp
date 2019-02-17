@@ -1,23 +1,3 @@
-<!--   <div class="row">
-      <div class="col s12 m6">
-        <div class="card blue-grey darken-1">
-          <div class="card-content white-text">
-            <span class="card-title"><%= tweet.title %></span>
-            <p>by <%= tweet.user.name %></p>
-          </div>
-          <div class="card-action">
-            <% if user_signed_in? && tweet.user_id = current_user.id %>
-            <%= link_to '詳細', tweet_path(tweet.id), method: :get %>
-            <%= link_to '編集', edit_tweet_path(tweet.id), method: :get %>
-            <%= link_to '削除', "/tweets/#{tweet.id}", method: :delete %>
-            <% else %>
-            <%= link_to '詳細', tweet_path(tweet.id), method: :get %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
- -->
 <div class="row">
   <div class="col s3">
     <div class="card">
@@ -32,13 +12,13 @@
         <p>by <%= tweet.user.name %></p>
         <!-- <p><a href="#">This is a link</a></p> -->
         <div class="card-action">
-          <% if user_signed_in? && tweet.user_id = current_user.id %>
+      <% if user_signed_in? && current_user.id == tweet.user.id %>
             <%= link_to '詳細', tweet_path(tweet.id), method: :get %>
             <%= link_to '編集', edit_tweet_path(tweet.id), method: :get %>
-            <%= link_to '削除', "/tweets/#{tweet.id}", method: :delete %>
-            <% else %>
+            <%= link_to '削除', "/tweets/#{tweet.id}", method: :delete , data: { confirm: '本当に削除しますか？' } %>
+          <% else %>
             <%= link_to '詳細', tweet_path(tweet.id), method: :get %>
-          <% end %>
+      <% end %>
       </div>
     </div>
     </div>

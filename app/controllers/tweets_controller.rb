@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
   before_action :move_to_index,except: [:index,:show]
   def index
-    @Tweets = Tweet.order("id desc").page(params[:page]).per(5)
+    @Tweets = Tweet.includes(:user).order("created_at DESC").page(params[:page]).per(5)
   end
 
   def new
@@ -20,6 +20,7 @@ class TweetsController < ApplicationController
   def destroy
     tweet = Tweet.find(params[:id])
     tweet.destroy if tweet.user_id == current_user.id
+    redirect_to action: :index
   end
 
   def edit
