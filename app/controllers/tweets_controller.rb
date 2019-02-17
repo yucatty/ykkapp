@@ -9,7 +9,6 @@ class TweetsController < ApplicationController
   end
 
   def create
-    binding.pry
     Tweet.create(create_params)
     redirect_to action: :index
   end
@@ -35,7 +34,7 @@ class TweetsController < ApplicationController
 
  private
   def create_params
-    params.require(:tweet).permit(:text,:title).merge(user_id: current_user.id)
+    params.require(:tweet).permit(:text,:title,:image).merge(user_id: current_user.id)
   end
 
   def move_to_index
