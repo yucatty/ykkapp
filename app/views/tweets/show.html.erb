@@ -1,1 +1,23 @@
-<%= @tweet.text %>
+  <div class="row">
+      <div class="col s8 center">
+        <div class="card">
+          <div class="card-image waves-effect waves-block waves-light">
+            <% if @tweet.image? %>
+                  <%= image_tag @tweet.image.url %>
+          <% end %>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="row">
+      <div class="col s12 m6">
+        <div class="card  grey lighten-4">
+          <div class="card-content black-text">
+            <span class="card-title"><%= @tweet.title %></span>
+            <p><%= @tweet.text %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+

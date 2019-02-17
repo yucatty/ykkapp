@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
   before_action :move_to_index,except: [:index,:show]
   def index
-    @Tweets = Tweet.order("id desc").page(params[:page]).per(5)
+    @Tweets = Tweet.includes(:user).order("created_at DESC").page(params[:page]).per(5)
   end
 
   def new
@@ -9,7 +9,6 @@ class TweetsController < ApplicationController
   end
 
   def create
-    binding.pry
     Tweet.create(create_params)
     redirect_to action: :index
   end
@@ -21,6 +20,7 @@ class TweetsController < ApplicationController
   def destroy
     tweet = Tweet.find(params[:id])
     tweet.destroy if tweet.user_id == current_user.id
+    redirect_to action: :index
   end
 
   def edit
@@ -35,7 +35,7 @@ class TweetsController < ApplicationController
 
  private
   def create_params
-    params.require(:tweet).permit(:text,:title).merge(user_id: current_user.id)
+    params.require(:tweet).permit(:text,:title,:image).merge(user_id: current_user.id)
   end
 
   def move_to_index

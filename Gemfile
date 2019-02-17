@@ -67,5 +67,6 @@ gem 'pry-rails'
 
 gem 'devise'
 gem 'kaminari'
-
+gem 'carrierwave'
+gem 'rmagick'
 
